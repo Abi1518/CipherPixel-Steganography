@@ -20,7 +20,7 @@ if option == "Encode" and uploaded_file is not None:
     message = st.text_area("Enter Secret Message")
 
     if st.button("Encode"):
-        image = Image.open(uploaded_file)
+        image = Image.open(uploaded_file).convert("RGB")
 
         encrypted = encrypt_message(message, key)
         encoded_img = encode_image(image, encrypted)
@@ -42,7 +42,7 @@ if option == "Encode" and uploaded_file is not None:
 # 🔓 DECODE
 elif option == "Decode" and uploaded_file is not None:
     if st.button("Decode"):
-        image = Image.open(uploaded_file)
+        image = Image.open(uploaded_file).convert("RGB")
 
         try:
             data = decode_image(image)
