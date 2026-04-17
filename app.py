@@ -26,6 +26,14 @@ if option == "Encode" and uploaded_file is not None:
         encoded_img = encode_image(image, encrypted)
 
         encoded_img.save("encoded.png")
+        with open("encoded.png", "rb") as file:
+            st.download_button(
+                label="📥 Download Encoded Image",
+                data=file,
+                file_name="encoded.png",
+                mime="image/png"
+    )
+
 
         st.image(encoded_img, caption="Encoded Image")
         st.success("✅ Message hidden successfully!")
